@@ -3,18 +3,22 @@ import Button from "../UI/Button";
 import Card from "../UI/Card";
 import Styles from "./AddUser.module.css";
 
-const AddUser = () => {
+const AddUser = ({ onAddUser }) => {
   const [enteredUsername, setEnteredUsername] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
 
   const addUserHandler = (e) => {
     e.preventDefault();
 
-    if (enteredUsername.trim().length === 0 || enteredAge.trim().length) return;
+    if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
+      return;
+    }
 
-    if (+enteredAge < 1) return;
+    if (+enteredAge < 1) {
+      return;
+    }
 
-    console.log(enteredUsername, enteredAge);
+    onAddUser(enteredUsername, enteredAge);
     setEnteredAge("");
     setEnteredUsername("");
   };
